@@ -138,28 +138,32 @@ export default function ProjectCard({ project, index }) {
           ))}
         </div>
 
-        <div className="relative z-20 mt-5 flex items-center gap-4 border-t border-line pt-4">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            onClick={stopBubble}
-            className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-primary"
-          >
-            <FaGithub size={16} /> Code
-          </a>
-          {project.live && project.live !== '#' && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noreferrer"
-              onClick={stopBubble}
-              className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-primary"
-            >
-              <ArrowUpRight size={16} /> Live
-            </a>
-          )}
-        </div>
+        {(project.github || (project.live && project.live !== '#')) && (
+          <div className="relative z-20 mt-5 flex items-center gap-4 border-t border-line pt-4">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                onClick={stopBubble}
+                className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-primary"
+              >
+                <FaGithub size={16} /> Code
+              </a>
+            )}
+            {project.live && project.live !== '#' && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                onClick={stopBubble}
+                className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-primary"
+              >
+                <ArrowUpRight size={16} /> Live
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </motion.div>
   );

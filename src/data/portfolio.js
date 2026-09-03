@@ -63,11 +63,11 @@ export const skills = [
 // other project you want the same treatment for.
 export const projects = [
   {
-    title: 'PickleMatch',
+    title: 'PickleMatch Play',
     slug: 'picklematch',
     image: '/projects/picklematch/icon.png',
     description:
-      'A React Native app that matches nearby pickleball players in real time — set your availability and skill level, then send and receive game invites.',
+      'A mobile app that helps pickleball players find compatible partners, plan games, and connect with their local community.',
     longDescription: [
       "PickleMatch solves a simple, common problem for pickleball players: finding someone to play with, right now. Instead of scrolling group chats or guessing who's free, players flip on \"Play Today\" and instantly see who else nearby is available to play.",
       "It's built with React Native and Expo Router for the app shell, TypeScript throughout, and Supabase for real-time data — active player status, invites, and preferences all sync live as players come online or respond.",
@@ -82,25 +82,13 @@ export const projects = [
       'Built with React Native, Expo Router, TypeScript, and Supabase',
     ],
     // Official 6.5" App Store screenshots from the project's own
-    // app-store-assets/ios folder — not simulator grabs. Messages and
-    // Profile aren't included here because the app requires a real login
-    // to render them and I'm not signing into the live backend to get them;
-    // add those two the same way (drop a file in public/projects/picklematch/
-    // and add an entry here) once you export them yourself.
+    // app-store-assets/ios folder — not simulator grabs. home.png is still
+    // in public/projects/picklematch/ if you want to bring Home back later;
+    // Messages and Profile aren't included because the app requires a real
+    // login to render them and I'm not signing into the live backend to get
+    // them — add those the same way (drop a file in
+    // public/projects/picklematch/ and add an entry here) once exported.
     screenshots: [
-      {
-        src: '/projects/picklematch/home.png',
-        alt: 'PickleMatch Home screen with today\'s activity and upcoming games',
-        title: 'Home — your court activity at a glance',
-        caption:
-          'A dashboard for your pickleball life: your stats, what\'s happening today, and every game you have planned, without digging through menus.',
-        details: [
-          'Profile snapshot up top — skill rating, home city, preferred format',
-          '"Today" quick actions: turn on Play Now availability or find your next game',
-          '"Your games" feed shows every active plan, including ones still being coordinated (time/court TBD)',
-          'Push notifications surfaced right from the home screen',
-        ],
-      },
       {
         src: '/projects/picklematch/discover.png',
         alt: 'PickleMatch Discover screen ranking nearby players by compatibility',
@@ -131,8 +119,13 @@ export const projects = [
     status: 'In development',
     tags: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
     category: 'Mobile',
-    github: 'https://github.com/karkisunil14/PickleMatch54',
-    live: '#', // TODO: add an App Store / TestFlight / web link once it ships
+    // No `github` field on purpose — the repo stays private, so no code
+    // link is shown on the card or detail page.
+    // TODO: add an App Store / TestFlight link here once it's ready; add a
+    // Google Play closed-test link too if you want one. A short demo video
+    // embedded on the detail page (see ProjectDetail.jsx) would also go a
+    // long way — screenshots explain the UI, a video shows it actually working.
+    live: '#',
     featured: true,
   },
 ];

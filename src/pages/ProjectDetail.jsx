@@ -81,26 +81,34 @@ export default function ProjectDetail() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px] shadow-primary/70"
-            >
-              <FaGithub size={16} /> View code
-            </a>
-            {project.live && project.live !== '#' && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-primary hover:text-primary"
-              >
-                <ArrowUpRight size={16} /> View live
-              </a>
-            )}
-          </div>
+          {(project.github || (project.live && project.live !== '#')) && (
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px] shadow-primary/70"
+                >
+                  <FaGithub size={16} /> View code
+                </a>
+              )}
+              {project.live && project.live !== '#' && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={
+                    project.github
+                      ? 'inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 text-sm font-semibold text-ink transition-colors hover:border-primary hover:text-primary'
+                      : 'inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px] shadow-primary/70'
+                  }
+                >
+                  <ArrowUpRight size={16} /> View live
+                </a>
+              )}
+            </div>
+          )}
         </Reveal>
 
         <Reveal delay={0.1}>
