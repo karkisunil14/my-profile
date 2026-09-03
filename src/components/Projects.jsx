@@ -46,7 +46,7 @@ export default function Projects() {
         </Reveal>
       )}
 
-      <motion.div layout className="flex flex-wrap justify-center gap-6">
+      <motion.div className="flex flex-wrap justify-center gap-6">
         <AnimatePresence mode="popLayout">
           {filtered.map((project, i) => (
             <div

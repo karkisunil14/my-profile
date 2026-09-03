@@ -16,6 +16,13 @@ const gradients = [
 
 const spring = { stiffness: 200, damping: 20, mass: 0.4 };
 
+// No `layout` prop here on purpose: it conflicts with the live
+// rotateX/rotateY tilt values below (both drive `transform`), and could
+// leave the card's layout projection stuck referencing a stale position
+// instead of tracking scroll — visually "stuck" mid-page. It was only
+// there for the filter-tab reflow animation, which no longer exists now
+// that Projects renders a single card with no filter UI.
+
 export default function ProjectCard({ project, index }) {
   const navigate = useNavigate();
   const clickable = Boolean(project.slug);
@@ -49,7 +56,6 @@ export default function ProjectCard({ project, index }) {
 
   return (
     <motion.div
-      layout
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
