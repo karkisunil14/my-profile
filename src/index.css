@@ -66,6 +66,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Keeps anchor jumps (nav links, "Back to projects", etc.) from landing a
+   section flush under the fixed navbar — both native #hash scrolling and
+   Element.scrollIntoView() respect scroll-margin-top. */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 body {
   margin: 0;
   background: var(--color-bg);
