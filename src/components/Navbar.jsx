@@ -31,7 +31,13 @@ export default function Navbar() {
       />
       <nav
         className={`mx-auto flex max-w-6xl items-center justify-between px-6 py-4 transition-all duration-300 ${
-          scrolled ? 'glass mt-2 max-w-5xl rounded-2xl' : ''
+          // Deliberately more opaque than the site's shared `.glass` utility
+          // (which is ~4% white — fine for static cards, but a fixed navbar
+          // needs to actually obscure whatever section is scrolling by
+          // underneath it, not just tint it).
+          scrolled
+            ? 'mt-2 max-w-5xl rounded-2xl border border-line bg-bg/90 shadow-lg shadow-black/40 backdrop-blur-xl'
+            : ''
         }`}
       >
         <a href="#home" className="font-display text-lg font-semibold text-ink">
