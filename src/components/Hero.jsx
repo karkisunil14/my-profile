@@ -7,18 +7,19 @@ import {
 } from 'framer-motion';
 import { ArrowDown, Mail } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6';
-import { useRef } from 'react';
-import FloatingBadges from './FloatingBadges';
+import { lazy, Suspense, useRef } from 'react';
 import MagneticButton from './ui/MagneticButton';
 import { profile } from '../data/portfolio';
 import useTypewriter from '../hooks/useTypewriter';
+
+const InfrastructureScene = lazy(() => import('../three/InfrastructureScene'));
 
 const socials = [
   { key: 'github', href: profile.social.github, icon: FaGithub, label: 'GitHub' },
   { key: 'linkedin', href: profile.social.linkedin, icon: FaLinkedin, label: 'LinkedIn' },
   { key: 'twitter', href: profile.social.twitter, icon: FaXTwitter, label: 'Twitter' },
   { key: 'email', href: `mailto:${profile.email}`, icon: Mail, label: 'Email' },
-];
+].filter(({ href }) => href && !href.includes('your-username'));
 
 const reduceMotion =
   typeof window !== 'undefined' &&
@@ -61,10 +62,8 @@ export default function Hero() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: 1200 }}
-      className="relative flex min-h-svh items-center overflow-hidden pt-24"
+      className="hero-shell relative flex min-h-svh items-center overflow-hidden pt-24"
     >
-      <FloatingBadges mx={springMx} my={springMy} />
-
       <motion.div
         style={{
           rotateX: contentRotateX,
@@ -72,8 +71,9 @@ export default function Hero() {
           y: contentY,
           opacity: contentOpacity,
         }}
-        className="mx-auto w-full max-w-6xl px-6"
+        className="relative z-10 mx-auto grid w-full max-w-[92rem] items-center gap-8 px-6 lg:grid-cols-[0.82fr_1.18fr] xl:px-10"
       >
+        <div className="max-w-2xl">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-display text-6xl font-bold leading-[1.05] text-ink sm:text-7xl md:text-8xl"
+          className="font-display text-6xl font-bold leading-[1.02] text-ink sm:text-7xl xl:text-[5.8rem]"
         >
           <span className="text-gradient animate-gradient bg-[length:200%_auto] drop-shadow-[0_0_45px_rgba(139,92,246,0.35)]">
             {profile.name}
@@ -98,17 +98,26 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-5 flex h-9 items-center font-display text-xl text-muted sm:text-2xl"
+          className="mt-5 flex h-9 items-center font-display text-lg text-muted sm:text-xl"
         >
           <span>{role}</span>
           <span className="ml-1 inline-block h-6 w-[2px] animate-pulse bg-secondary" />
         </motion.div>
 
-        <motion.p
+        <motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-6 max-w-xl text-balance text-lg text-muted"
+          className="mt-7 max-w-xl text-balance font-display text-[1.85rem] font-semibold leading-[1.22] text-ink sm:text-[2.35rem]"
+        >
+          I build reliable infrastructure—and products people enjoy using.
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mt-5 max-w-xl text-balance text-base leading-relaxed text-muted sm:text-lg"
         >
           {profile.tagline}
         </motion.p>
@@ -116,14 +125,14 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          transition={{ duration: 0.7, delay: 0.45 }}
           className="mt-9 flex flex-wrap items-center gap-4"
         >
           <MagneticButton
             href="#projects"
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_-8px] shadow-primary/70"
           >
-            View my work
+            Explore my work
           </MagneticButton>
           <MagneticButton
             href="#contact"
@@ -136,7 +145,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
           className="mt-10 flex items-center gap-5"
         >
           {socials.map(({ key, href, icon: Icon, label }) => (
@@ -151,6 +160,22 @@ export default function Hero() {
               <Icon size={20} />
             </a>
           ))}
+        </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92, x: 40 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="hero-visual"
+        >
+          <Suspense fallback={<div className="scene-loading" aria-hidden="true" />}>
+            <InfrastructureScene />
+          </Suspense>
+          <div className="hero-balance glass">
+            <div><strong>60%</strong><span>DevOps engineering</span></div>
+            <div><strong>40%</strong><span>Product building</span></div>
+          </div>
         </motion.div>
       </motion.div>
 

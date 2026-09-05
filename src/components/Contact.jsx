@@ -10,7 +10,7 @@ const socials = [
   { key: 'github', href: profile.social.github, icon: FaGithub, label: 'GitHub' },
   { key: 'linkedin', href: profile.social.linkedin, icon: FaLinkedin, label: 'LinkedIn' },
   { key: 'twitter', href: profile.social.twitter, icon: FaXTwitter, label: 'Twitter' },
-];
+].filter(({ href }) => href && !href.includes('your-username'));
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -64,6 +64,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit} className="space-y-4 md:col-span-3">
             <div className="grid gap-4 sm:grid-cols-2">
               <input
+                aria-label="Your name"
                 required
                 type="text"
                 placeholder="Your name"
@@ -72,6 +73,7 @@ export default function Contact() {
                 className="rounded-xl border border-line bg-white/[0.03] px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-primary focus:outline-none"
               />
               <input
+                aria-label="Your email"
                 required
                 type="email"
                 placeholder="Your email"
@@ -81,6 +83,7 @@ export default function Contact() {
               />
             </div>
             <textarea
+              aria-label="Your message"
               required
               rows={4}
               placeholder="Your message"

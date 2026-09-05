@@ -6,10 +6,10 @@
 export const profile = {
   name: 'Sunil Karki',
   initials: 'SK',
-  roles: ['DevOps Engineer', 'Cloud Engineer', 'AWS-Certified Professional', 'Problem Solver'],
+  roles: ['DevOps Engineer', 'Cloud Engineer', 'Product Builder'],
   tagline:
-    'AWS-certified DevOps engineer who designs, deploys, and automates reliable cloud infrastructure — using Jenkins, Git, and CI/CD pipelines to ship solutions that hold up in production.',
-  location: 'Based in — add your city', // TODO: not on your resume, add if you want it shown
+    'AWS-certified DevOps engineer combining cloud automation, CI/CD, and hands-on product development to ship systems that hold up in production.',
+  location: 'DevOps engineering · cloud automation · product development',
   resumeUrl: '/resume.pdf',
   email: 'karkisunil1200@gmail.com',
   social: {
@@ -27,10 +27,10 @@ export const about = {
   // Years of experience is estimated from your resume's earliest listed
   // start date (Oct 2020) — update if it's no longer accurate.
   stats: [
-    { label: 'Years of experience', value: 4, suffix: '+' },
+    { label: 'Years of experience', value: 5, suffix: '+' },
     { label: 'Certifications earned', value: 6, suffix: '' },
     { label: 'Technologies used', value: 20, suffix: '+' },
-    { label: 'Cups of coffee', value: 999, suffix: '+' },
+    { label: 'Core disciplines', value: 4, suffix: '' },
   ],
 };
 

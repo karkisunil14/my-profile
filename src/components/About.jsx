@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section id="about" className="relative mx-auto max-w-6xl px-6 py-28">
       <SectionHeading
-        kicker="01 — About me"
+        kicker="03 — About me"
         title="A little about who I am"
         description={profile.location}
       />

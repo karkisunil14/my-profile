@@ -16,7 +16,7 @@ export default function Skills() {
   return (
     <section id="skills" className="relative mx-auto max-w-6xl px-6 py-28">
       <SectionHeading
-        kicker="02 — Skills"
+        kicker="04 — Skills"
         title="Tools I build with"
         description="A snapshot of the languages, frameworks, and tools I reach for most."
       />

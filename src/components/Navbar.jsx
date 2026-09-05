@@ -2,12 +2,12 @@ import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { profile } from '../data/portfolio';
+import BrandMark from './BrandMark';
 
 const links = [
-  { href: '#about', label: 'About' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#projects', label: 'Projects' },
+  { href: '#projects', label: 'Work' },
   { href: '#experience', label: 'Experience' },
+  { href: '#about', label: 'About' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -40,9 +40,12 @@ export default function Navbar() {
             : ''
         }`}
       >
-        <a href="#home" className="font-display text-lg font-semibold text-ink">
-          {profile.initials}
-          <span className="text-primary">.</span>
+        <a href="#home" aria-label={`${profile.name} — home`} className="group flex items-center gap-3">
+          <BrandMark />
+          <span className="hidden sm:block">
+            <span className="block font-display text-sm font-semibold leading-none text-ink">{profile.name}</span>
+            <span className="mt-1 block text-[10px] uppercase tracking-[.2em] text-muted">DevOps engineer</span>
+          </span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -69,7 +72,7 @@ export default function Navbar() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="text-ink md:hidden"
+          className="flex min-h-11 min-w-11 items-center justify-center rounded-full border border-line text-ink md:hidden"
           aria-label="Toggle menu"
         >
           {open ? <X size={22} /> : <Menu size={22} />}

@@ -4,91 +4,56 @@ import Reveal from './ui/Reveal';
 import SectionHeading from './ui/SectionHeading';
 import { certifications, experience } from '../data/portfolio';
 
+const technology = [
+  ['Linux', 'SQL', 'CI/CD', 'Bash', 'Git'],
+  ['Linux', 'Splunk', 'ServiceNow', 'Jenkins', 'Shell'],
+  ['UNIX', 'SQL', 'Control-M', 'Shell'],
+  ['JavaScript', 'Python', 'React', 'Node.js'],
+  ['Computer science', 'Systems'],
+];
+
 export default function Experience() {
   return (
-    <section id="experience" className="relative mx-auto max-w-4xl px-6 py-28">
-      <SectionHeading
-        kicker="04 — Experience"
-        title="Where I've been"
-        description="Work history, education, and certifications."
-      />
-
-      <div className="relative">
-        <motion.div
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: 'easeInOut' }}
-          style={{ originY: 0 }}
-          className="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-primary via-secondary to-transparent sm:left-1/2"
-        />
-
-        <div className="space-y-12">
+    <section id="experience" className="relative mx-auto max-w-6xl px-6 py-28">
+      <SectionHeading kicker="02 — Experience" title="Where I've been" description="Experience shaped by reliability, ownership, and continuous improvement." />
+      <div className="experience-track relative">
+        <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} style={{ originY: 0 }} className="experience-line" />
+        <div className="space-y-12 md:space-y-16">
           {experience.map((entry, i) => {
             const Icon = entry.type === 'work' ? Briefcase : GraduationCap;
-            const alignRight = i % 2 === 1;
             return (
-              <Reveal key={entry.title + entry.org} delay={0.1}>
-                <div
-                  className={`relative flex items-start gap-6 sm:gap-0 ${
-                    alignRight ? 'sm:flex-row-reverse sm:text-right' : ''
-                  }`}
-                >
-                  <div className="absolute left-5 top-1 z-10 -translate-x-1/2 sm:left-1/2">
-                    <div className="glass flex h-9 w-9 items-center justify-center rounded-full text-primary">
-                      <Icon size={16} />
+              <Reveal key={entry.title + entry.org} delay={0.06}>
+                <div className={`experience-row ${i % 2 === 1 ? 'experience-row--right' : ''}`}>
+                  <div className="experience-node"><Icon size={17} /></div>
+                  <article className="experience-card glass">
+                    <div className="flex gap-4">
+                      <div className="experience-icon"><Icon size={22} /></div>
+                      <div>
+                        {entry.period && <p className="text-xs font-bold uppercase tracking-[0.12em] text-secondary">{entry.period}</p>}
+                        <h3 className="mt-1 font-display text-xl font-semibold text-ink">{entry.title}</h3>
+                        <p className="text-sm text-muted">{entry.org}</p>
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="w-full pl-14 sm:w-1/2 sm:pl-0">
-                    <div
-                      className={`glass rounded-2xl p-6 ${
-                        alignRight ? 'sm:mr-10' : 'sm:ml-10'
-                      }`}
-                    >
-                      {entry.period && (
-                        <span className="text-xs font-semibold uppercase tracking-wide text-secondary">
-                          {entry.period}
-                        </span>
-                      )}
-                      <h3 className="mt-1 font-display text-lg font-semibold text-ink">
-                        {entry.title}
-                      </h3>
-                      <p className="text-sm text-muted">{entry.org}</p>
-                      {entry.points.length > 0 && (
-                        <ul
-                          className={`mt-3 space-y-1.5 text-sm text-muted ${
-                            alignRight ? 'sm:text-right' : ''
-                          }`}
-                        >
-                          {entry.points.map((point) => (
-                            <li key={point}>{point}</li>
-                          ))}
-                        </ul>
-                      )}
+                    {entry.points.length > 0 && (
+                      <ul className="mt-5 space-y-2 text-sm leading-relaxed text-muted">
+                        {entry.points.slice(0, 3).map((point) => <li key={point} className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" />{point}</li>)}
+                      </ul>
+                    )}
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {technology[i].map((tag) => <span key={tag} className="rounded-lg border border-line bg-white/[.025] px-2.5 py-1.5 text-xs text-muted">{tag}</span>)}
                     </div>
-                  </div>
+                  </article>
                 </div>
               </Reveal>
             );
           })}
         </div>
       </div>
-
-      <Reveal delay={0.15} className="mt-16">
-        <div className="glass rounded-2xl p-6 sm:p-8">
-          <h3 className="flex items-center justify-center gap-2 font-display text-sm font-semibold uppercase tracking-wide text-secondary">
-            <Award size={16} /> Certifications
-          </h3>
-          <div className="mt-5 flex flex-wrap justify-center gap-3">
-            {certifications.map((cert) => (
-              <span
-                key={cert}
-                className="rounded-full border border-line bg-white/[0.03] px-4 py-2 text-sm text-ink transition-colors hover:border-primary hover:text-primary"
-              >
-                {cert}
-              </span>
-            ))}
+      <Reveal delay={0.1} className="mt-20">
+        <div className="glass rounded-3xl p-7 sm:p-9">
+          <h3 className="flex items-center justify-center gap-2 font-display text-sm font-semibold uppercase tracking-[.14em] text-secondary"><Award size={17} /> Certifications</h3>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            {certifications.map((cert) => <span key={cert} className="rounded-full border border-line bg-white/[0.03] px-4 py-2 text-sm text-ink transition hover:-translate-y-1 hover:border-primary/60">{cert}</span>)}
           </div>
         </div>
       </Reveal>

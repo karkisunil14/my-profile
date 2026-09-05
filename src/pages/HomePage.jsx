@@ -1,4 +1,3 @@
-import { Suspense, lazy } from 'react';
 import About from '../components/About';
 import Contact from '../components/Contact';
 import Experience from '../components/Experience';
@@ -10,23 +9,19 @@ import Skills from '../components/Skills';
 import Spotlight from '../components/Spotlight';
 import TechMarquee from '../components/TechMarquee';
 
-const Journey = lazy(() => import('../three/Journey'));
-
 export default function HomePage() {
   return (
     <div className="relative">
-      <Suspense fallback={null}>
-        <Journey />
-      </Suspense>
+      <div className="site-atmosphere" aria-hidden="true" />
       <Spotlight />
       <Navbar />
       <main>
         <Hero />
         <TechMarquee />
-        <About />
-        <Skills />
         <Projects />
         <Experience />
+        <About />
+        <Skills />
         <Contact />
       </main>
       <Footer />

@@ -1,10 +1,10 @@
 import { motion, useTransform } from 'framer-motion';
 
 const badges = [
-  { label: 'AWS', pos: 'right-[6%] top-[12%] sm:right-[10%] lg:right-[16%]', depth: 1.6, delay: '0s', color: '#8b5cf6' },
-  { label: 'Terraform', pos: 'right-[26%] top-[24%] sm:right-[30%] lg:right-[36%]', depth: 0.7, delay: '0.9s', color: '#22d3ee' },
-  { label: 'DevOps', pos: 'right-[14%] top-[46%] sm:right-[18%] lg:right-[24%]', depth: 1.1, delay: '1.8s', color: '#f472b6' },
-  { label: 'CI/CD', pos: 'right-[2%] top-[62%] sm:right-[4%] lg:right-[8%]', depth: 1.4, delay: '2.7s', color: '#8b5cf6' },
+  { label: 'AWS', pos: 'right-[3%] top-[15%]', depth: 1.4, delay: '0s', color: '#8d63ff' },
+  { label: 'Terraform', pos: 'right-[42%] top-[20%]', depth: 0.65, delay: '0.9s', color: '#39d7ff' },
+  { label: 'DevOps', pos: 'right-[2%] top-[48%]', depth: 1, delay: '1.8s', color: '#ff7280' },
+  { label: 'CI/CD', pos: 'right-[8%] top-[76%]', depth: 1.2, delay: '2.7s', color: '#8d63ff' },
 ];
 
 function Badge({ label, pos, depth, delay, color, index, mx, my }) {
@@ -32,7 +32,7 @@ function Badge({ label, pos, depth, delay, color, index, mx, my }) {
 
 export default function FloatingBadges({ mx, my }) {
   return (
-    <div className="pointer-events-none absolute inset-0 hidden sm:block">
+    <div className="pointer-events-none absolute inset-0 z-20 hidden xl:block">
       {badges.map((b, i) => (
         <Badge key={b.label} {...b} index={i} mx={mx} my={my} />
       ))}
